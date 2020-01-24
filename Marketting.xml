@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Advertisements>
+  <Ad>
+    <ImageUrl>~/img/google.png</ImageUrl>
+    <NavigateUrl>https://www.google.co.in/</NavigateUrl>
+    <AlternateText>Please Visit Google.co.in</AlternateText>
+    <Impressions>10</Impressions>
+    <Keyword>GoogleUSA</Keyword>
+  </Ad>
+
+
+  <Ad>
+    <ImageUrl>~/img/facebook1.png</ImageUrl>
+    <NavigateUrl>www.facebook.com</NavigateUrl>
+    <AlternateText>Please Visit Facebook.com</AlternateText>
+    <Impressions>30</Impressions>
+    <Keyword>FBSAnJose</Keyword>
+  </Ad>
+
+
+  <Ad>
+    <ImageUrl>~/img/quora.png</ImageUrl>
+    <NavigateUrl>https://www.quora.com/</NavigateUrl>
+    <AlternateText>Please visit Quora.com</AlternateText>
+    <Impressions>20</Impressions>
+    <Keyword>QuoraAnswerCom</Keyword>
+  </Ad>
+</Advertisements>

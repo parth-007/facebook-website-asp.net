@@ -1,0 +1,10 @@
+questions i asked
+
+1.how to fill a division with a color
+2.what is the color of facebook
+3.how to use placeholder in asp.net
+4.setting table row heights in css
+5.how to make rounded courners textbox in css
+6.change your stylesheet validation to css3
+7.what the font facebook uses
+8.why a row inserted 2 times in asp.net

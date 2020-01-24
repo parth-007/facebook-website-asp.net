@@ -1,0 +1,226 @@
+﻿<%@ Master Language="VB" CodeFile="Facebook.master.vb" Inherits="Facebook" %>
+
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="asp" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+   
+  
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css?parameter=1" rel="stylesheet">
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
+<link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/start/jquery-ui.css"  rel="stylesheet" type="text/css" />
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+          <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link rel = "Stylesheet" href = "https://twitter.github.io/typeahead.js/css/examples.css">
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_pJZLL7PLdDZCYysMBEb5iOKcYKhL27A&callback=initMap">
+    <script type="text/javascript">
+        function initMap() {
+            var uluru = { lat: -25.363, lng: 131.044 };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 4,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        }
+    $(function () {
+        $('#Search').keyup(function () {
+            $.ajax({
+                url: "homepage.aspx/GetAutoCompleteData",
+                data: "{'username':'" + $('#Search').val() + "'}",
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    var val = '<ul id="userlist">';
+                    $.map(data.d, function (item) {
+                        var itemval = item.split('/')[0];
+                        val += '<li class=tt-suggestion>' + itemval + '</li>'
+                    })
+                    val += '</ul>'
+                    $('#divautocomplete').show();
+                    $('#divautocomplete').html(val);
+                    $('#userlist li').click(function () {
+                        $('#Search').val($(this).text());
+                        $('#divautocomplete').hide();
+                    })
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        })
+        $(document).mouseup(function (e) {
+            var closediv = $("#divautocomplete");
+            if (closediv.has(e.target).length == 0) {
+                closediv.hide();
+            }
+        });
+    });
+
+       
+        
+    </script>
+    <style type="text/css">
+         #map {
+        width: 100%;
+        height: 400px;
+        background-color: grey;
+      }
+        #container {
+    width: auto;
+    background-color: #ffcc33;
+    margin: auto;
+        }
+        #d1
+        {
+            height:auto;
+            width:auto;
+            background:lavender;
+            border-color:Blue;
+            text-align: right;
+        }
+        .c1
+        {
+          
+            background:#3b5998;
+        }
+        .container
+        {
+           
+            margin:auto;
+        }
+        #first
+        {
+           width: 300px;
+    float:left;
+    height: 500px;
+    background-color: lavender;
+        }
+        #second
+        {
+             width: 350px;
+    float: left;
+    height: 300px;
+    background-color: pink;
+    color: white;
+        }
+        #clear {
+    clear: both;
+}
+        ul li
+{
+list-style: none;
+}
+    </style>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+        
+<div class="modal" id="searchmodal" tabindex="-1">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+    <button class="close" data-dismiss="modal">&times;</button>
+    <h4 class="modal-title">Search Results</h4>
+</div>
+<div class="modal-body">
+<p> Some Text in the modal</p>
+</div>
+<div class="modal-footer">
+<button class="btn btn-primary" data-dismiss="modal">Close</button>
+</div>
+</div>
+</div>
+</div>
+
+    <form id="form1" runat="server">
+        <div class="c1">
+       
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                <p style="height: 51px; width: 1359px;">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <img alt="" src="images/f2.jpg" style="height: 47px; width: 55px" />&nbsp;&nbsp;&nbsp; 
+                &nbsp;&nbsp;&nbsp;
+                    <input runat="server" type="text" class="typeahead" id="Search" placeholder="Type username to search" autocomplete="off" />
+        <!--    <div id="divautocomplete" class="tt-menu" style="display: none">
+            </div>-->
+                    &nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnSearch" runat="server" Height="40px" Text="Search" Width="67px" data-target="#searchmodal" data-toggle="modal"/>
+                    &nbsp;&nbsp;&nbsp;<asp:Image ID="Image1" runat="server" ImageUrl="images/3.PNG" Height="39px" Width="41px"/>
+                    &nbsp;&nbsp;
+                    <asp:LinkButton ID="mymain" runat="server" 
+                    style="color: #FFFFFF" OnClientClick="window.open('Main_Profile.aspx','otherpage')">LinkButton</asp:LinkButton>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:LinkButton ID="homelink" runat="server" style="color: #FFFFFF" OnClientClick="window.open('hpage.aspx','otherpage')" PostBackUrl="~/hpage.aspx">Home</asp:LinkButton>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <asp:ImageButton ID="ImageButton4" runat="server" Height="26px" 
+                    ImageUrl="~/images/ss.PNG" Width="33px" />
+                    &nbsp;<asp:Label ID="fr" runat="server" style="color: #FF0000"></asp:Label>
+                    &nbsp;
+                    <asp:ImageButton ID="ImageButton2" runat="server" Height="26px" 
+                    ImageUrl="~/images/msg1.png" Width="33px" />
+                    <asp:Label ID="ms" runat="server" style="color: #FF3300"></asp:Label>
+                    &nbsp;<asp:ImageButton ID="ImageButton3" runat="server" Height="26px" 
+                    ImageUrl="~/images/noti.png" Width="33px" />
+                    <asp:Label ID="no" runat="server" ForeColor="Red"></asp:Label>
+                    &nbsp;<asp:ImageButton ID="ImageButton5" runat="server" Height="26px" 
+                    ImageUrl="~/images/que.png" Width="33px" />
+                    &nbsp;<asp:ImageButton ID="ImageButton6" runat="server" Height="26px" 
+                    ImageUrl="~/images/down.png" Width="33px" OnClientClick="window.open('settings.aspx','Otherpage');" ToolTip="Settings"/>
+                    &nbsp;<asp:LinkButton ID="LinkButton1" runat="server" ForeColor="White">Logout</asp:LinkButton>
+                </p>
+        </asp:ContentPlaceHolder>
+    </div>
+    <div id="d1">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+            <p>
+                &nbsp;<br />
+            </p>
+        </asp:ContentPlaceHolder>
+    </div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+            <table class="ui-accordion">
+                <tr>
+                    <td>
+                        <asp:LinkButton ID="LinkButton3" runat="server" OnClientClick="window.open('company.aspx','otherpage')">About Us</asp:LinkButton>
+                    </td>
+                    <td>
+                        <asp:LinkButton ID="LinkButton2" runat="server" PostBackUrl="~/Page.aspx">Create A Page</asp:LinkButton>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:LinkButton ID="LinkButton4" runat="server">SiteMap Location</asp:LinkButton>
+                    </td>
+                    <td>
+                        <asp:LinkButton ID="LinkButton5" runat="server" OnClientClick="window.open('Terms.aspx','otherpage')">Privacy Policy</asp:LinkButton>
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">Facebook Inc. @ San Diego. All Rights Reserved Sept.2017..©</th>
+                   
+                </tr>
+                <tr>
+                    <th colspan="2">
+                        <asp:SiteMapPath ID="SiteMapPath2" runat="server" SiteMapProvider="web.sitemap">
+                        </asp:SiteMapPath>
+                    </th>
+                   
+                </tr>
+            </table>
+        </asp:ContentPlaceHolder>
+    </form>
+    </body>
+</html>

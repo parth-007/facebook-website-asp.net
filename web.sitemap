@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+    <siteMapNode url="Default.aspx" title="Default"  description="Fb DEfault Page">
+      <siteMapNode url="Page.aspx" title="Page" description="Page Creation">
+        <siteMapNode url="open_page.aspx" title="Open PAge" description="Initial Page"/>
+      <siteMapNode url="MyPage.aspx" title="MyPage" description="My Page Look"/>
+        </siteMapNode>
+      <siteMapNode url="gmail.aspx" title="Gmail" description="Gmail Account"/>
+      
+          <siteMapNode url ="Admin.aspx" title="Admin" description="Admin Side">
+                <siteMapNode url ="data.aspx" title="Data" description="User Data"/>
+          </siteMapNode>
+          <siteMapNode url ="password.aspx" title="Password_set" description="Forget Password">
+          </siteMapNode>
+    
+      
+        <siteMapNode url="hpage.aspx" title="HomePage"  description="Home Page User">
+            <siteMapNode url ="OtherProfile.aspx" title="OtherProfile" description="Other Profile">
+          <siteMapNode url="OtherAbout.aspx" title="About_Other" description="About Info Other User" />
+          </siteMapNode>
+        <siteMapNode url="Requests.aspx" title="Friend_Req" description="Friends Requests Here"/>
+          </siteMapNode>
+        <siteMapNode url="profileset.aspx" title="SetProfile"  description="Set Profile Here" />
+        <siteMapNode url="Main_Profile.aspx" title="MainProfile" description="My Profile" >
+          
+          <siteMapNode url="aboutde.aspx" title="OtherProfile" description="See Other PRofile" />
+        <siteMapNode url="Friends.aspx" title="Friends" description="Friends Check" />
+        
+          </siteMapNode>
+      
+      
+        <siteMapNode url ="settings.aspx" title="Settings" description="Check Settings"/>
+        <siteMapNode url ="company.aspx" title="Company" description="My Company"/>
+        <siteMapNode url ="onlyus.aspx" title="Location" description="We Are one"/>   
+    <siteMapNode url ="Terms.aspx" title="TermsofComp" description="Terms and Policies"/>   
+    </siteMapNode>
+</siteMap>
